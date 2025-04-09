@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.id == null ? 'Добавление книги' : 'Редактирование книги'}">Форма книги</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 th:text="${book.id == null ? 'Добавление новой книги' : 'Редактирование книги'}">Форма
+                        книги</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/books/save}" th:object="${book}" method="post">
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <div class="mb-3">
+                            <label for="vendorCode" class="form-label">Артикул:</label>
+                            <input type="text" th:field="*{vendorCode}" id="vendorCode" class="form-control"
+                                   th:classappend="${#fields.hasErrors('vendorCode')} ? 'is-invalid'"/>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('vendorCode')}"
+                                 th:errors="*{vendorCode}">Ошибка артикула
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Название:</label>
+                            <input type="text" th:field="*{title}" id="title" class="form-control"
+                                   th:classappend="${#fields.hasErrors('title')} ? 'is-invalid'"/>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}"
+                                 th:errors="*{title}">Ошибка названия
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="year" class="form-label">Год издания:</label>
+                            <input type="number" th:field="*{year}" id="year" class="form-control"
+                                   th:classappend="${#fields.hasErrors('year')} ? 'is-invalid'"/>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('year')}"
+                                 th:errors="*{year}">Ошибка года
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="brand" class="form-label">Издательство:</label>
+                            <input type="text" th:field="*{brand}" id="brand" class="form-control"
+                                   th:classappend="${#fields.hasErrors('brand')} ? 'is-invalid'"/>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('brand')}"
+                                 th:errors="*{brand}">Ошибка издательства
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="stock" class="form-label">Количество в наличии:</label>
+                            <input type="number" th:field="*{stock}" id="stock" class="form-control"
+                                   th:classappend="${#fields.hasErrors('stock')} ? 'is-invalid'"/>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('stock')}"
+                                 th:errors="*{stock}">Ошибка количества
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Цена:</label>
+                            <input type="number" th:field="*{price}" id="price" class="form-control" step="0.01"
+                                   th:classappend="${#fields.hasErrors('price')} ? 'is-invalid'"/>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}"
+                                 th:errors="*{price}">Ошибка цены
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a th:href="@{/books}" class="btn btn-secondary me-md-2">Отмена</a>
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
