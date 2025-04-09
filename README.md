@@ -34,7 +34,7 @@ DELETE /api/books/{id} - Удаление книги
 
 Технический стек
 
-Бэкенд: Spring Boot
-Фронтенд: Bootstrap, Thymeleaf
-База данных: Postgres
+Бэкенд: Spring Boot, 
+Фронтенд: Bootstrap, Thymeleaf, 
+База данных: Postgres, 
 Безопасность: Spring Security
